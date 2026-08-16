@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipVault</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>ClipVault</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="search snippets...">
+                <select id="tagFilter">
+                    <option value="">all tags</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <div class="sidebar">
+                <button id="newBtn" class="btn-primary">+ new snippet</button>
+                <div id="snippetList" class="snippet-list"></div>
+            </div>
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <input type="text" id="titleInput" placeholder="untitled snippet">
+                    <div class="editor-actions">
+                        <select id="langSelect">
+                            <option value="text">Plain Text</option>
+                            <option value="python">Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="sql">SQL</option>
+                            <option value="bash">Bash</option>
+                            <option value="json">JSON</option>
+                        </select>
+                        <button id="saveBtn" class="btn-primary">save</button>
+                        <button id="deleteBtn" class="btn-danger">delete</button>
+                    </div>
+                </div>
+                <textarea id="contentArea" placeholder="paste your snippet here..."></textarea>
+                <div class="tag-bar">
+                    <input type="text" id="tagInput" placeholder="add tags (comma separated)">
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

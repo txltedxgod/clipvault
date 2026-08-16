@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #16213e;
+    border-bottom: 1px solid #0f3460;
+}
+
+header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e94560;
+}
+
+.search-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.search-bar input, .search-bar select {
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.search-bar input {
+    width: 240px;
+}
+
+.search-bar input:focus, .search-bar select:focus {
+    outline: none;
+    border-color: #e94560;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 260px;
+    background: #16213e;
+    border-right: 1px solid #0f3460;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.btn-primary {
+    background: #e94560;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-primary:hover {
+    background: #c73650;
+}
+
+.btn-danger {
+    background: transparent;
+    color: #e94560;
+    border: 1px solid #e94560;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-danger:hover {
+    background: #e94560;
+    color: white;
+}
+
+.snippet-list {
+    margin-top: 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.snippet-item {
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    border-left: 3px solid transparent;
+}
+
+.snippet-item:hover {
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.snippet-item.active {
+    background: rgba(233, 69, 96, 0.15);
+    border-left-color: #e94560;
+}
+
+.snippet-item .title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.snippet-item .meta {
+    font-size: 11px;
+    color: #888;
+}
+
+.snippet-item .tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.snippet-item .tag {
+    font-size: 10px;
+    background: #0f3460;
+    color: #aaa;
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+.editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.editor-header input {
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    font-size: 18px;
+    font-weight: 500;
+    flex: 1;
+    margin-right: 12px;
+}
+
+.editor-header input:focus {
+    outline: none;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.editor-actions select {
+    background: #1a1a2e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+#contentArea {
+    flex: 1;
+    background: #0d1117;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 16px;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: 6px;
+    resize: none;
+}
+
+#contentArea:focus {
+    outline: none;
+    border-color: #e94560;
+}
+
+.tag-bar {
+    margin-top: 8px;
+}
+
+.tag-bar input {
+    width: 100%;
+    background: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.tag-bar input:focus {
+    outline: none;
+    border-color: #e94560;
+}
