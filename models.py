@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, Table, ForeignKey
-from sqlalchemy.orm import relationship, DeclarativeBase
-from datetime import datetime
+from datetime import UTC, datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Table, Text
+from sqlalchemy.orm import DeclarativeBase, relationship
 
 
 class Base(DeclarativeBase):
@@ -11,7 +12,7 @@ snippet_tags = Table(
     'snippet_tags',
     Base.metadata,
     Column('snippet_id', Integer, ForeignKey('snippets.id')),
-    Column('tag_id', Integer, ForeignKey('tags.id'))
+    Column('tag_id', Integer, ForeignKey('tags.id')),
 )
 
 
@@ -22,8 +23,12 @@ class Snippet(Base):
     title = Column(String(200), nullable=True)
     content = Column(Text, nullable=False)
     language = Column(String(50), default='text')
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
+    updated_at = Column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC),
+        onupdate=lambda: datetime.now(UTC),
+    )
 
     tags = relationship('Tag', secondary=snippet_tags, back_populates='snippets')
 
@@ -35,7 +40,7 @@ class Snippet(Base):
             'language': self.language,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat(),
-            'tags': [t.name for t in self.tags]
+            'tags': [t.name for t in self.tags],
         }
 
 
