@@ -25,17 +25,29 @@ async function loadSnippets(q = '', tag = '') {
     snippets.forEach(s => {
         const div = document.createElement('div');
         div.className = 'snippet-item' + (s.id === currentId ? ' active' : '');
+        div.dataset.id = String(s.id);
         div.onclick = () => selectSnippet(s);
 
-        const title = s.title || 'untitled';
-        const date = new Date(s.created_at).toLocaleDateString();
-        const tagsHtml = s.tags.map(t => `<span class="tag">${t}</span>`).join('');
+        const titleEl = document.createElement('div');
+        titleEl.className = 'title';
+        titleEl.textContent = s.title || 'untitled';
 
-        div.innerHTML = `
-            <div class="title">${title}</div>
-            <div class="meta">${s.language} · ${date}</div>
-            <div class="tags">${tagsHtml}</div>
-        `;
+        const metaEl = document.createElement('div');
+        metaEl.className = 'meta';
+        metaEl.textContent = `${s.language} · ${new Date(s.created_at).toLocaleDateString()}`;
+
+        const tagsEl = document.createElement('div');
+        tagsEl.className = 'tags';
+        s.tags.forEach(t => {
+            const span = document.createElement('span');
+            span.className = 'tag';
+            span.textContent = t;
+            tagsEl.appendChild(span);
+        });
+
+        div.appendChild(titleEl);
+        div.appendChild(metaEl);
+        div.appendChild(tagsEl);
         list.appendChild(div);
     });
 }
@@ -47,13 +59,8 @@ function selectSnippet(s) {
     $('langSelect').value = s.language;
     $('tagInput').value = s.tags.join(', ');
 
-    document.querySelectorAll('.snippet-item').forEach(el => el.classList.remove('active'));
-    // find and highlight
-    const items = document.querySelectorAll('.snippet-item');
-    items.forEach(el => {
-        if (el.querySelector('.title').textContent === (s.title || 'untitled')) {
-            el.classList.add('active');
-        }
+    document.querySelectorAll('.snippet-item').forEach(el => {
+        el.classList.toggle('active', el.dataset.id === String(s.id));
     });
 }
 
